@@ -57,6 +57,8 @@ else
 fi
 unset color_prompt force_color_prompt
 
+PS1="<\[\033[1;34m\]\u\[\033[1;33m\]@\[\033[1;34m\]\H\[\033[0m\]> [ \[\033[1;32m\]\w\[\033[0m\] ] {\[\033[1;35m\]j\[\033[0m\]:\[\033[1;35m\]\j\[\033[0m\]} \$ "
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -77,11 +79,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
