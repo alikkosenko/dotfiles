@@ -1,2 +1,3 @@
-# useful_configs
-Useful config files 
+# dotfile
+
+Dotfiles for different utilities (e.g. bash, vim, htop ...)
