@@ -18,5 +18,9 @@ set smartindent
 " Setting UTF-8 encoding 
 set encoding=utf-8
 
+" Setting on search results highlighting 
+set hlsearch 
+
+
 " Setting my favourite colorscheme
 colorscheme industry 
