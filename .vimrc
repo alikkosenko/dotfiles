@@ -21,6 +21,9 @@ set encoding=utf-8
 " Setting on search results highlighting 
 set hlsearch 
 
+" Setting on syntax highlighting
+syntax on
+
 
 " Setting my favourite colorscheme
 colorscheme industry 

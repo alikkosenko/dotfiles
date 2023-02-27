@@ -1,0 +1,50 @@
+#!/usr/bin/bash
+
+# turboboostctl: ctl for turning Intel Tubro Boost CPU technology on/off
+
+PROGNAME=$(basename "$0")
+
+usage ()
+{
+	echo "Usage: $PROGNAME --help|--status|--off|--on" >&2
+}
+
+STATUS=$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)
+
+# [[ ! $1 =~ on|off|status ]] && echo -e "Unappropriate input. Expected 'on' or 'off' or 'status'" && exit 1
+
+
+case $1 in
+	--status|-s)
+		if ! (( $STATUS ));then
+			echo "on"
+		else
+			echo "off"
+		fi
+		;;
+
+	--on) 
+		echo "0" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo 1>/dev/null
+		;;
+
+	--off)
+		echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo 1>/dev/null
+		;;
+	--help|-h)
+		cat <<- _EOF_
+		$(usage)
+		Switches Intel Turbo Boost technology (TB) on/off.
+
+				-s, --status 		shows TB current status (on/off) and exit 
+					--on 			switching TB on and exit 
+					--off 			switching TB off and exit 
+				-h, --help			display this help and exit 
+		_EOF_
+		;;
+	*)
+		usage
+		;;
+esac
+
+
+# ex: filetype=sh

@@ -1,0 +1,106 @@
+#!/usr/bin/bash 
+
+# Script for creating symlinks on config files 
+# for my scripts and specific software, such as: guake, htop, 
+# etc. 
+
+# Array for files and their destination on the disk
+declare -A destination_arr
+
+PROGNAME=$(basename $0)
+
+
+if ! [[ $(id -u) ]]; then
+	echo "You are root. Exiting..." >&2
+	exit 1
+fi
+
+
+usage () {
+	echo "usage: $PROGNAME: ./create_links" >&2
+}
+
+
+backup_file ()
+{
+	if [[ -f $1 ]];then
+		mv $1 ${1}.bak
+	else
+		echo "Bad filename. Cannot create ${1}.bak" >&2
+	fi
+}
+
+create_symlink ()
+{
+	if ! [[ $(dirname ${destination_arr[$1]}) =~ ^$HOME/[[:graph:]]+ ]];then
+		sudo ln -s $1 ${destination_arr[$1]}
+		printf "%50s" "\nCreated symlink ${destination_arr[$1]}\n"
+	else
+		ln -s $1 ${destination_arr[$1]}
+	fi	
+}
+
+# if current OS is not Ubuntu 
+if ! [[ $(uname -v) =~ Ubuntu ]];then
+	echo -e "Seems like your distro name is not 'Ubuntu'\nDo you want ot continue? [y/Y/n/N] "
+	case $(read) in
+		y|Y) 
+			continue 
+			;;
+		n|N)
+			echo "Exiting..."
+			exit 0
+			;;
+	esac
+fi
+ 
+
+# Creating an array of local files and directories
+files=($(find $PWD \
+		\( -path "$PWD/.git/*" -o -name README.md -o -name "$PROGNAME" -o -name "*.swp" \) -prune \
+		-o \
+		\( -path "$PWD/.config/*" -type f \) -printf "%P\n" \
+		-o \
+		\( -path "$PWD/.vim/*" -type f \) -prune  \
+		-o \
+		\( -path "$PWD/.vim" -o -path "$PWD/.local/*" -type f -o -type f \)  -printf "%P\n"))
+
+
+# Creation an associated array of local files (and directories)
+# and destination paths for future (or current) symlinks
+for f in ${files[@]};do
+
+	# if thereis no "." at the start of path
+	! [[ $f =~ ^\.[[:graph:]]+ ]] &&  destination_arr["$PWD/$f"]="/"$f && continue
+
+	destination_arr["$PWD/$f"]=$HOME/$f
+done
+
+
+printf "%20s\t\t%40s\n" "FILENAME" "DESTINATION"
+printf "%20s\t\t%40s\n\n" "========" "==========="
+
+for i in ${!destination_arr[@]};do
+	
+	# printing array values
+	printf "%20s\t\t%40s\t\t" $(basename $i) ${destination_arr[$i]}
+
+	# if symlink is broken of file doesn't exist
+	if [[ ! -e ${destination_arr[$i]} ]];then
+		echo "No file detected (or broken symlink)"
+		rm -i ${destination_arr[$i]} 2>/dev/null
+		create_symlink $i
+	
+	# if file is valid symlink
+	elif [[ -L ${destination_arr[$i]} ]];then
+		echo "Symlink detected"
+
+	# if file is regular
+	elif [[ -f ${destination_arr[$i]} ]];then
+		echo "Regular file detected"
+		backup_file ${destination_arr[$i]}
+		create_symlink $i 
+	fi
+done
+
+# ex: filetype=bash

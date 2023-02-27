@@ -14,7 +14,6 @@ if [[ `uname -a` =~ "Ubuntu" ||  `uname -a` =~ "Debian" ]];then
 	alias upgd='sudo apt update && sudo apt upgrade && sudo apt autoremove'
 fi
 
-# Check if current user is root
-if ! (( `id -u` ));then
-	alias drop_caches='echo 3 > /proc/sys/vm/drop_caches'
-fi
+# Drop RAM cache 
+alias drop_caches='echo 3 | sudo tee /proc/sys/vm/drop_caches 1>/dev/null'
+

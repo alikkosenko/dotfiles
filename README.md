@@ -1,4 +1,4 @@
-# dotfile
+# dotfiles
 
 Dotfiles for different utilities (e.g. bash, vim, htop ...)
 

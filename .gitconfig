@@ -3,3 +3,5 @@
 	email = alikkosenko31@gmail.com
 [init]
 	defaultBranch = main
+[alias]
+	co = checkout

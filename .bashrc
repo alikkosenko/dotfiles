@@ -95,6 +95,11 @@ if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
 fi
 
+# Adding scripts from $HOME/bin directory to the PATH
+# if [ -d $HOME/bin ]; then
+#	 PATH=$PATH":$HOME/bin"
+# fi
+
 # Change main editor
 export EDITOR="/usr/bin/vim"
 

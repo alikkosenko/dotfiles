@@ -1,0 +1,23 @@
+# turboboostctl completion
+
+_turboboostctl()
+{
+	local cur prev words cword
+	_init_completion || return
+
+	opts="--help --status --on --off"	
+#	opts=$(_parse_help $1 | sed 's/$/ /g')
+	
+
+
+	case $prev in 
+		--help | --status | --off | --on | -!(-*)[ohs])
+			return
+			;;
+	esac
+
+	COMPREPLY=($(compgen -W "$(echo $opts)" -- "$cur"))
+} &&
+	complete -F _turboboostctl turboboostctl
+
+# ex: filetype=sh
