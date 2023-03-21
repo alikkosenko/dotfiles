@@ -33,10 +33,13 @@ backup_file ()
 create_symlink ()
 {
 	if ! [[ $(dirname ${destination_arr[$1]}) =~ ^$HOME/[[:graph:]]+ ]];then
-		sudo ln -s $1 ${destination_arr[$1]}
+		if sudo -n -v -u $USER; then
+            sudo ln -s $1 ${destination_arr[$1]}
+        else 
+            ln -s $1  ${destination_arr[$1]}
+        fi
+
 		printf "%50s" "\nCreated symlink ${destination_arr[$1]}\n"
-	else
-		ln -s $1 ${destination_arr[$1]}
 	fi	
 }
 

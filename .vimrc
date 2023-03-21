@@ -8,6 +8,8 @@ set number
 
 " Number of spaces which one tab occupies
 set tabstop=4
+set shiftwidth=4
+set expandtab
 
 " Now vim will make auto-indentation  
 set autoindent
