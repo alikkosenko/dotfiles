@@ -4,9 +4,9 @@
 
 
 
-if [ -d $(locate -b obsidian_main) ]; then
-	obsidian_path="$(locate -b obsidian_main)"
-fi
+#if [ -d $(locate -b obsidian_main) ]; then
+#	obsidian_path="$(locate -b obsidian_main)"
+#fi
 
 
 # In development
