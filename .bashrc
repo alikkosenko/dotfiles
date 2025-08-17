@@ -103,6 +103,11 @@ fi
 # Change main editor
 export EDITOR="/usr/bin/vim"
 
+# Android SDK
+export ANDROID_SDK="$HOME/Android/Sdk"
+export PATH="$ANDROID_SDK/build-tools/36.0.0:$PATH"
+
+export AAPT="aapt2"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
