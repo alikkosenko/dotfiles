@@ -106,8 +106,16 @@ export EDITOR="/usr/bin/vim"
 # Android SDK
 export ANDROID_SDK="$HOME/Android/Sdk"
 export PATH="$ANDROID_SDK/build-tools/36.0.0:$PATH"
-
 export AAPT="aapt2"
+
+# Add local bin to PATH
+
+export PATH="$HOME/bin:$PATH"
+
+
+# eco aws instance ssh connect
+alias essh='ssh -i "/home/alikk/Downloads/ecodrive.pem" ubuntu@ec2-54-246-51-31.eu-west-1.compute.amazonaws.com'
+
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/alikk/Downloads/Car_apps/Waze/res/values-ru'
 let g:netrw_dirhist_3='/home/alikk/.config/htop'
 let g:netrw_dirhist_2='/home/alikk/Projects/obsidian_main/.git/objects/pack'
 let g:netrw_dirhist_1='/home/alikk/Projects/obsidian_main/.git/objects'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_8='/usr/share/git-core/contrib/hooks'
 let g:netrw_dirhist_7='/usr/share/git-core/contrib'
 let g:netrw_dirhist_6='/home/alikk/Projects/dotfiles/config/htop'
 let g:netrw_dirhist_5='/home/alikk/Projects/dotfiles/config'
-let g:netrw_dirhist_4='/home/alikk/Projects/dotfiles'
