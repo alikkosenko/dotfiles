@@ -116,7 +116,7 @@ export PATH="$HOME/bin:$PATH"
 # eco aws instance ssh connect
 alias essh='ssh -i "/home/alikk/Downloads/co.pem" ubuntu@ec2-52-18-215-126.eu-west-1.compute.amazonaws.com'
 
-if [ -f ~/.venv/bin/activate]; then
+if [ -f ~/.venv/bin/activate ]; then
     . ~/.venv/bin/activate
 fi
 
