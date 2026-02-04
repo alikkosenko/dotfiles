@@ -114,8 +114,11 @@ export PATH="$HOME/bin:$PATH"
 
 
 # eco aws instance ssh connect
-alias essh='ssh -i "/home/alikk/Downloads/ecodrive.pem" ubuntu@ec2-54-246-51-31.eu-west-1.compute.amazonaws.com'
+alias essh='ssh -i "/home/alikk/Downloads/co.pem" ubuntu@ec2-52-18-215-126.eu-west-1.compute.amazonaws.com'
 
+if [ -f ~/.venv/bin/activate]; then
+    . .venv/bin/activate
+fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
